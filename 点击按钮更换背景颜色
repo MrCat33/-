@@ -1,0 +1,58 @@
+import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class btnColor extends JFrame implements ActionListener
+{
+     Panel mp = null;
+     JButton btn1 = null;
+     JButton btn2 = null;
+     
+     public btnColor()
+     {
+    	 mp = new Panel();
+    	 btn1 = new JButton("红色");
+    	 btn2 = new JButton("绿色");
+    	 
+    	 this.add(btn1,BorderLayout.NORTH);
+    	 mp.setBackground(Color.black);
+    	 this.add(mp);
+    	 this.add(btn2,BorderLayout.SOUTH);
+    	 
+    	 this.setSize(200,150);
+    	 this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	 this.setVisible(true);
+    	 
+    	 //监听按钮
+    	 btn1.addActionListener(this);
+    	 btn1.setActionCommand("aa");
+    	 btn2.addActionListener(this);
+    	 btn2.setActionCommand("bb");
+     }
+     
+     public static void main(String[] args)
+     {
+    	 btnColor bc = new btnColor();
+     }
+	
+	public void actionPerformed(ActionEvent e) 
+	{
+	     if(e.getActionCommand().equals("aa"))
+	     {
+	    	 mp.setBackground(Color.RED);
+	     }
+	     else if(e.getActionCommand().equals("bb"))
+	     {
+	    	 mp.setBackground(Color.GREEN);
+	     }
+	}
+            	
+}
