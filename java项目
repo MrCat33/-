@@ -1,0 +1,74 @@
+import java.awt.*;
+import javax.swing.JFrame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+ 
+public class JFrameTest extends JFrame implements ActionListener
+{
+			 private boolean stop = false;
+		     int x = 0;
+		     int y = 0;
+		     int m = 1;
+		     int n = 1;
+		     public static void main(String[] args) 
+		     {
+		         new JFrameTest();
+		     }
+		     public JFrameTest()
+		     {
+		    	 Button btn = new Button("停止");
+		         this.setVisible(true);
+		         this.setSize(500,500);
+		         this.setDefaultCloseOperation(3);
+		         this.setLocation(400, 100);
+		         this.setResizable(false);
+		         this.setTitle("测试框架");
+		         this.add(btn,BorderLayout.NORTH);
+		         btn.addActionListener(this);
+		         move();
+		     }
+		     
+		    public void paint(Graphics g) 
+		    {
+		        super.paint(g);
+		         g.setColor(Color.BLACK);
+		        g.fillOval(x, 25 + y, 50, 50);
+		    }
+		     public void move()
+		     {
+		        while(this.stop == false)
+		        {
+		            x += m;
+		            y += n;
+		            if(x >= 450)
+		            {
+		                m = -m; 
+		            }
+		           if(x < 0)
+		           {
+		                m = 1;
+		             }
+		            if(y >= 425)
+		            {
+		                n = -n;
+		             }
+		          if(y < 0)
+		          {
+		                n = 1;
+		           }
+		             try 
+		             {
+		                 Thread.sleep(1);
+		             } catch (InterruptedException e) 
+		             {
+		                 e.printStackTrace();
+		             }
+		             repaint();
+		         }
+		     }
+		     
+			public void actionPerformed(ActionEvent e) 
+			{
+			     	this.stop = true;
+			}
+ }
